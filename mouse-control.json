@@ -1,89 +1,165 @@
 {
-    "title": "Toggle mouse mode with Right Shift + WASD/RF/QE for control",
-    "rules": [
-      {
-        "description": "Toggle mouse mode on/off with Right Shift",
-        "manipulators": [
-          {
-            "type": "basic",
-            "from": {
-              "key_code": "right_shift",
-              "modifiers": {
-                "optional": ["any"]
+  "title": "Toggle mouse mode with Right Shift + WASD/RF/QE for control",
+  "rules": [
+    {
+      "description": "Toggle mouse mode on/off with Right Shift",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "right_shift",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "set_variable": {
+                "name": "mouse_mode",
+                "value": 1
               }
-            },
-            "to": [
-              {
-                "set_variable": {
-                  "name": "mouse_mode",
-                  "value": 1
-                }
+            }
+          ],
+          "to_after_key_up": [
+            {
+              "set_variable": {
+                "name": "mouse_mode",
+                "value": 0
               }
-            ],
-            "to_after_key_up": [
-              {
-                "set_variable": {
-                  "name": "mouse_mode",
-                  "value": 0
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "description": "Mouse control with WASD + QE click + RF scroll",
-        "manipulators": [
-          {
-            "type": "basic",
-            "conditions": [{ "type": "variable_if", "name": "mouse_mode", "value": 1 }],
-            "from": { "key_code": "w" },
-            "to_if_held_down": [{ "mouse_key": { "y": -250 } }]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Toggle slow mouse mode on/off with Up Arrow",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "up_arrow",
+            "modifiers": {
+              "optional": ["any"]
+            }
           },
-          {
-            "type": "basic",
-            "conditions": [{ "type": "variable_if", "name": "mouse_mode", "value": 1 }],
-            "from": { "key_code": "a" },
-            "to_if_held_down": [{ "mouse_key": { "x": -250 } }]
-          },
-          {
-            "type": "basic",
-            "conditions": [{ "type": "variable_if", "name": "mouse_mode", "value": 1 }],
-            "from": { "key_code": "s" },
-            "to_if_held_down": [{ "mouse_key": { "y": 250 } }]
-          },
-          {
-            "type": "basic",
-            "conditions": [{ "type": "variable_if", "name": "mouse_mode", "value": 1 }],
-            "from": { "key_code": "d" },
-            "to_if_held_down": [{ "mouse_key": { "x": 250 } }]
-          },
-          {
-            "type": "basic",
-            "conditions": [{ "type": "variable_if", "name": "mouse_mode", "value": 1 }],
-            "from": { "key_code": "q" },
-            "to": [{ "pointing_button": "button1" }]
-          },
-          {
-            "type": "basic",
-            "conditions": [{ "type": "variable_if", "name": "mouse_mode", "value": 1 }],
-            "from": { "key_code": "e" },
-            "to": [{ "pointing_button": "button2" }]
-          },
-          {
-            "type": "basic",
-            "conditions": [{ "type": "variable_if", "name": "mouse_mode", "value": 1 }],
-            "from": { "key_code": "r" },
-            "to_if_held_down": [{ "mouse_key": { "vertical_wheel": -32 } }]
-          },
-          {
-            "type": "basic",
-            "conditions": [{ "type": "variable_if", "name": "mouse_mode", "value": 1 }],
-            "from": { "key_code": "f" },
-            "to_if_held_down": [{ "mouse_key": { "vertical_wheel": 32 } }]
-          }
-        ]
-      }
-    ]
-  }
-  
+         "to_if_alone": [
+           { "key_code": "up_arrow" }
+          ],
+          "to": [
+            { "set_variable": { "name": "slow_mouse_mode", "value": 1 } }
+          ],
+          "to_after_key_up": [
+            { "set_variable": { "name": "slow_mouse_mode", "value": 0 } }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "slow mouse control with WASD + QE click + RF scroll",
+      "manipulators": [
+        {
+          "type": "basic",
+          "conditions": [{ "type": "variable_if", "name": "slow_mouse_mode", "value": 1 }],
+          "from": { "key_code": "w" },
+          "to_if_held_down": [{ "mouse_key": { "y": -250 } }]
+        },
+        {
+          "type": "basic",
+          "conditions": [{ "type": "variable_if", "name": "slow_mouse_mode", "value": 1 }],
+          "from": { "key_code": "a" },
+          "to_if_held_down": [{ "mouse_key": { "x": -250 } }]
+        },
+        {
+          "type": "basic",
+          "conditions": [{ "type": "variable_if", "name": "slow_mouse_mode", "value": 1 }],
+          "from": { "key_code": "s" },
+          "to_if_held_down": [{ "mouse_key": { "y": 250 } }]
+        },
+        {
+          "type": "basic",
+          "conditions": [{ "type": "variable_if", "name": "slow_mouse_mode", "value": 1 }],
+          "from": { "key_code": "d" },
+          "to_if_held_down": [{ "mouse_key": { "x": 250 } }]
+        },
+        {
+          "type": "basic",
+          "conditions": [{ "type": "variable_if", "name": "mouse_mode", "value": 1 }],
+          "from": { "key_code": "q" },
+          "to": [{ "pointing_button": "button1" }]
+        },
+        {
+          "type": "basic",
+          "conditions": [{ "type": "variable_if", "name": "mouse_mode", "value": 1 }],
+          "from": { "key_code": "e" },
+          "to": [{ "pointing_button": "button2" }]
+        },
+        {
+          "type": "basic",
+          "conditions": [{ "type": "variable_if", "name": "slow_mouse_mode", "value": 1 }],
+          "from": { "key_code": "r" },
+          "to_if_held_down": [{ "mouse_key": { "vertical_wheel": -30 } }]
+        },
+        {
+          "type": "basic",
+          "conditions": [{ "type": "variable_if", "name": "slow_mouse_mode", "value": 1 }],
+          "from": { "key_code": "f" },
+          "to_if_held_down": [{ "mouse_key": { "vertical_wheel": 30 } }]
+        }
+      ]
+    },
+    {
+      "description": "Mouse control with WASD + QE click + RF scroll",
+      "manipulators": [
+        {
+          "type": "basic",
+          "conditions": [{ "type": "variable_if", "name": "mouse_mode", "value": 1 }],
+          "from": { "key_code": "w" },
+          "to_if_held_down": [{ "mouse_key": { "y": -3000 } }]
+        },
+        {
+          "type": "basic",
+          "conditions": [{ "type": "variable_if", "name": "mouse_mode", "value": 1 }],
+          "from": { "key_code": "a" },
+          "to_if_held_down": [{ "mouse_key": { "x": -3000 } }]
+        },
+        {
+          "type": "basic",
+          "conditions": [{ "type": "variable_if", "name": "mouse_mode", "value": 1 }],
+          "from": { "key_code": "s" },
+          "to_if_held_down": [{ "mouse_key": { "y": 3000 } }]
+        },
+        {
+          "type": "basic",
+          "conditions": [{ "type": "variable_if", "name": "mouse_mode", "value": 1 }],
+          "from": { "key_code": "d" },
+          "to_if_held_down": [{ "mouse_key": { "x": 3000 } }]
+        },
+        {
+          "type": "basic",
+          "conditions": [{ "type": "variable_if", "name": "mouse_mode", "value": 1 }],
+          "from": { "key_code": "q" },
+          "to": [{ "pointing_button": "button1" }]
+        },
+        {
+          "type": "basic",
+          "conditions": [{ "type": "variable_if", "name": "mouse_mode", "value": 1 }],
+          "from": { "key_code": "e" },
+          "to": [{ "pointing_button": "button2" }]
+        },
+        {
+          "type": "basic",
+          "conditions": [{ "type": "variable_if", "name": "mouse_mode", "value": 1 }],
+          "from": { "key_code": "r" },
+          "to_if_held_down": [{ "mouse_key": { "vertical_wheel": -60 } }]
+        },
+        {
+          "type": "basic",
+          "conditions": [{ "type": "variable_if", "name": "mouse_mode", "value": 1 }],
+          "from": { "key_code": "f" },
+          "to_if_held_down": [{ "mouse_key": { "vertical_wheel": 60 } }]
+        }
+      ]
+    }
+  ]
+}
+

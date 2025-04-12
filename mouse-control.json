@@ -83,13 +83,13 @@
         },
         {
           "type": "basic",
-          "conditions": [{ "type": "variable_if", "name": "mouse_mode", "value": 1 }],
+          "conditions": [{ "type": "variable_if", "name": "slow_mouse_mode", "value": 1 }],
           "from": { "key_code": "q" },
           "to": [{ "pointing_button": "button1" }]
         },
         {
           "type": "basic",
-          "conditions": [{ "type": "variable_if", "name": "mouse_mode", "value": 1 }],
+          "conditions": [{ "type": "variable_if", "name": "slow_mouse_mode", "value": 1 }],
           "from": { "key_code": "e" },
           "to": [{ "pointing_button": "button2" }]
         },
